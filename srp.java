@@ -1,6 +1,8 @@
 /**
  * SOLID - Single Responsibility Principle
  */
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,14 @@ class Journal
   @Override
   public String toString(){
     return String.join(System.lineSeparator(), entries);
+  }
+
+/** breaking SRP */
+  public void save(String filenameString) throws FileNotFoundException
+  {
+    try (PrintStream ouStream = new PrintStream(filenameString)) {
+      System.out.println(toString());
+    }
   }
 }
 
