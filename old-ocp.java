@@ -1,3 +1,4 @@
+/** implemented without ocp - filters problem */
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -30,27 +31,6 @@ class ProductFilter {
   public Stream<Product> filterBySize(List<Product> products, Sizes size)
   {
     return products.stream().filter(p -> p.size == size);
-  }
-}
-
-interface Specification<T> {
-  boolean isSatisfied(T item);
-}
-
-interface Filter<T> {
-  Stream<T> filter(List<T> items, Specification<T> spec);
-}
-
-class ColorSpecification implements Specification<Product>{
-  private Colors color;
-
-  public ColorSpecification(Color color){
-    this.color = color;
-  }
-
-  @Override
-  public boolean isSatisfied(Product item){
-    return item.color == color;
   }
 }
 
