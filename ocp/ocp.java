@@ -41,16 +41,53 @@ interface Filter<T> {
   Stream<T> filter(List<T> items, Specification<T> spec);
 }
 
+class BetterFilter implements Filter<Product> {
+  @Override
+  public Stream<Product> filter(List<Product> items,
+                                Specification<Product> spec){
+    return items.stream().filter(p -> spec.isSatisfied(p));
+  }
+}
+
 class ColorSpecification implements Specification<Product>{
   private Colors color;
 
-  public ColorSpecification(Color color){
+  public ColorSpecification(Colors color){
     this.color = color;
   }
 
   @Override
   public boolean isSatisfied(Product item){
     return item.color == color;
+  }
+}
+
+class SizeSpecification implements Specification<Product>{
+  private Sizes size;
+
+  public SizeSpecification(Sizes size){
+    this.size = size;
+  }
+
+  @Override
+  public boolean isSatisfied(Product item){
+    return item.size == size;
+  }
+}
+
+class AndSpecification<T> implements Specification<T>{
+
+  private Specification<T> first, second;
+
+  public AndSpecification(Specification<T> first, Specification<T>
+    second) {
+      this.first = first;
+      this.second = second;
+    }
+
+  @Override
+  public boolean isSatisfied(Product item){
+    return first.isSatisfied(item) && second.isSatisfied(item);
   }
 }
 
@@ -67,5 +104,19 @@ class Show {
     pf.filterByColor(products, Colors.green)
               .forEach(p -> System.out.println(
                 " - " + p.name + " is green"));
+    
+    BetterFilter bf = new BetterFilter();
+    System.out.println("(New) Green products:");
+    bf.filter(products, new ColorSpecification(Colors.green))
+      .forEach(p -> System.out.println(
+        " - " + p.name + " is GReen"));
+
+    System.out.println("Huge blue items: ");
+    bf.filter(products, 
+      new AndSpecification<>(
+        new ColorSpecification(Colors.blue), 
+        new SizeSpecification(Sizes.huge) 
+          )).forEach(p -> System.out.println(
+            " - " + p.name + " is Blue and Huge"));
   }
 }
