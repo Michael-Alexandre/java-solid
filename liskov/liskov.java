@@ -34,6 +34,11 @@ class Rectangle
   }
 }
 
+public boolean isSquare()
+{
+  return width == height;
+}
+
 class Square extends Rectangle
 {
   public Square() {}
@@ -53,6 +58,19 @@ class Square extends Rectangle
   public void setHeight(int height){
     super.setHeight(height);
     super.setWidth(height);
+  }
+}
+
+class RectangleFactory 
+{
+  public static Rectangle newRectangle(int width, int height)
+  {
+    return new Rectangle(width, height);
+  }
+
+  public static Rectangle newSquare( int side)
+  {
+    return new Rectangle(side, side);
   }
 }
 
