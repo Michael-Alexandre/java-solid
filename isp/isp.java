@@ -31,3 +31,50 @@ class MultiFunctionPrinter implements Machine
   }
 
 }
+
+class OldFashionPrinter implements Machine
+{
+  @Override
+  public void print(Document d) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'print'");
+  }
+
+  @Override
+  public void fax(Document d) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'fax'");
+  }
+
+  @Override
+  public void scan(Document d) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'scan'");
+  }
+}
+// YAGNI You Ain't Going Need It
+interface Printer
+{
+ void print(Document d); 
+}
+
+interface Scanner
+{
+  void scan(Document d);
+}
+
+class Photocopier implements Printer, Scanner
+{
+  @Override
+  public void scan(Document d) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'scan'");
+  }
+
+  @Override
+  public void print(Document d) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'print'");
+  }
+ //decorator pattern 
+}
