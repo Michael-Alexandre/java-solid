@@ -1,8 +1,11 @@
 /**
- * SOLID - Single Responsibility Principle
+  Single Responsibility Principle
+ . a class should only have one reason to change
+ . separation of concerns -different classes hanling
+ different,  independent tasks/ problems
  */
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 

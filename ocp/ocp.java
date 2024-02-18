@@ -1,3 +1,9 @@
+/**
+ * OPEN-CLOSED PRINCIPLE
+ * classes should be open for extension but 
+ * closed for modification
+ */
+
 import java.util.List;
 import java.util.stream.Stream;
 

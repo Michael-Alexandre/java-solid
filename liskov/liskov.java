@@ -1,3 +1,9 @@
+/**
+ * Liskov substitution principle
+ * You should be able to substitute a base type
+ * for a subtype
+ */
+
 class Rectangle
 {
   protected int width, height;
